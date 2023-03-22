@@ -1,0 +1,48 @@
+AttributeBegin
+    Rotate  0 0 1 0  # oribital
+    Rotate -40 1 0 0 # elevation
+    Translate 0 0 8  # dolly
+    Scale 2 1 2
+  
+    Attribute "visibility" "int indirect" [0] "int transmission" [0]
+    Attribute "visibility" "int camera" [0]
+    Rotate 180 0 1 0 # do not change
+    Light "PxrRectLight" "PxrRectLightShape1"
+            "float exposure" [6]
+            "color lightColor" [1 1 1]
+            "float coneAngle" [90]
+            "int enableShadows" [1]
+            "color shadowColor" [0 0 0]
+AttributeEnd
+AttributeBegin
+    Rotate  120 0 1 0  # oribital
+    Rotate -60 1 0 0 # elevation
+    Translate 0 0 8  # dolly
+    Scale 2 1 2
+  
+    Attribute "visibility" "int indirect" [0] "int transmission" [0]
+    Attribute "visibility" "int camera" [0]
+    Rotate 180 0 1 0 # do not change
+    Light "PxrRectLight" "PxrRectLightShape2"
+            "float exposure" [6]
+            "color lightColor" [1 1 1]
+            "float coneAngle" [90]
+            "int enableShadows" [1]
+            "color shadowColor" [0 0 0]
+AttributeEnd
+AttributeBegin
+    Rotate -90 0 1 0  # oribital
+    Rotate -30 1 0 0 # elevation
+    Translate 0 0 8  # dolly
+    Scale 2 1 2
+  
+    Attribute "visibility" "int indirect" [0] "int transmission" [0]
+    Attribute "visibility" "int camera" [0]
+    Rotate 180 0 1 0 # do not change
+    Light "PxrRectLight" "PxrRectLightShape3"
+            "float exposure" [5]
+            "color lightColor" [1 1 1]
+            "float coneAngle" [90]
+            "int enableShadows" [1]
+            "color shadowColor" [0 0 0]
+AttributeEnd

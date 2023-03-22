@@ -1,0 +1,36 @@
+Hider "raytrace" "int incremental" [1] "int minsamples" [0] "int maxsamples" [128] "float darkfalloff" [0.025]
+Integrator "PxrPathTracer" "PxrPathTracer" "int maxIndirectBounces" [10] "int allowCaustics" [0]
+PixelVariance 0.05
+# version 3.04
+# Display "HelloWorld.exr" "framebuffer" "rgba"
+
+Format 720 520 1
+Display "untitled" "it" "rgba"
+Projection "perspective" "fov" [20]
+
+Translate  0 0 30
+Rotate -30 1 0 0
+#Rotate  45 0 1 0
+Scale 1 1 -1
+#DisplayFilter "PxrBackgroundDisplayFilter" "background" "color backgroundColor" [1 1 1]
+WorldBegin
+	Bxdf "PxrSurface" "default"
+		#ReadArchive "../archives/materials/TimesSq.rib"
+	AttributeBegin #lighting
+		ReadArchive "../archives/lights/3lights.rib"
+	AttributeEnd
+
+    AttributeBegin #geometry
+		Scale 2 1 1
+		Sphere 1 -1 1 360
+        #ReadArchive "../archives/geo/jack.rib"
+    AttributeEnd
+
+	AttributeBegin #this is the floor
+		# Attribute "identifier" "string name" ["plane1"]
+		Scale 20 1 10
+		ReadArchive "../archives/materials/ThinFilm.rib"
+		Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+				"st" [0 0  0 1  1 1  1 0]
+	AttributeEnd
+WorldEnd

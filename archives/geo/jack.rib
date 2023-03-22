@@ -1,0 +1,23 @@
+AttributeBegin
+    Rotate -15  0 1 0
+    Rotate 54.7 1 0 0
+    Rotate 45   0 1 0
+    Translate 0 0.8 0
+  
+    TransformBegin
+        TransformBegin
+            Attribute "identifier" "name" ["bar1"]
+            ReadArchive "../archives/geo/bar.rib"
+        TransformEnd
+        TransformBegin
+            Attribute "identifier" "name" ["bar2"]
+            Rotate 90 1 0 0 # Rotation around the x-axis
+            ReadArchive "../archives/geo/bar.rib"
+        TransformEnd
+        TransformBegin
+            Attribute "identifier" "name" ["bar3"]
+            Rotate 90 0 1 0 # Rotation around the y-axis
+            ReadArchive "../archives/geo/bar.rib"
+        TransformEnd
+    TransformEnd
+AttributeEnd
