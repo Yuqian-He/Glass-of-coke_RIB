@@ -10,12 +10,12 @@ Projection "perspective" "fov" [30]
 # DepthOfField 1.5 0.9 17.5
 
 Translate 2.5 -1.4 15
-# Translate  2.8 -1.6 20
+# Translate  2.8 -1.6 120
 # Rotate 0 1 0 0
 Rotate -15 1 0 0
 Rotate  -24 0 1 0
 Scale 1 1 -1
-#DisplayFilter "PxrBackgroundDisplayFilter" "background" "color backgroundColor" [1 1 1]
+DisplayFilter "PxrBackgroundDisplayFilter" "background" "color backgroundColor" [1 1 1]
 WorldBegin
 	Bxdf "PxrSurface" "default"
 		"color diffuseColor" [0.3 0.3 0.3]
@@ -23,7 +23,12 @@ WorldBegin
 		"int diffuseDoubleSided" [1]
 
 	TransformBegin
-		Scale 4 4 4
+        # Scale 0.5 0.5 0.5
+        # Translate 0 10 0 
+        Rotate -100 1 0 0
+        Rotate -50 0 0 1
+        Light "PxrDomeLight" "hdrLight" "float exposure" [3] "string lightColorMap" ["veranda_1k.tx"]
+		# Scale 4 4 4
 	TransformEnd
 
 	AttributeBegin
@@ -60,7 +65,7 @@ TransformBegin
                 Scale 1.2 1 1.2
                 Attribute "trace" "integer maxspeculardepth" [10]
                 # Bxdf "PxrGlass" "sg1" "float reflectionGain" 1 "color reflectionColor" [1 1 1] "color transmissionColor" [1 1 1]
-                Bxdf "PxrLayerSurface" "translucentShader"  "float diffuseGain"  [0.0] "float refractionGain"  [1] "float reflectionGain"  [1] "color refractionColor"  [1 1 1] "float Roughness"  [0] "float glassAnisotropy"  [0] "int thinGlass" [0]
+                Bxdf "PxrLayerSurface" "translucentShader"  "float diffuseGain"  [0.0] "float refractionGain"  [1] "float reflectionGain"  [1] "color refractionColor"  [1 1 1] "float glassAnisotropy"  [0] "int thinGlass" [0]
                 # Bxdf "PxrSurface" "translucentShader" "int diffuseDoubleSided" [2] "float diffuseGain" [0.1] "float refractionGain" [1] "float reflectionGain" [0.5] "color refractionColor" [1 1 1] "float glassRoughness" [0.3] "int thinGlass" [0.3]
                 
                 TransformBegin
@@ -93,17 +98,17 @@ TransformBegin
                     Rotate -90 1 0 0
                     Hyperboloid -0.3 1.0 -1.0 0.4 0.85 1.0 360
                     Scale 0.9 0.9 1
-                    Hyperboloid -0.3 1.0 -1.0 0.4 0.85 1.0 360
+                    # Hyperboloid -0.3 1.0 -1.0 0.4 0.85 1.0 360
                 TransformEnd
 
                 AttributeBegin
-                Bxdf "PxrLayerSurface" "translucentShader"  "float diffuseGain"  [0.0] "float refractionGain"  [1] "float reflectionGain"  [1] "color refractionColor"  [0.9 0.7 0.1] "float Roughness"  [1] "float glassAnisotropy"  [0] "int thinGlass" [0]
+                Bxdf "PxrLayerSurface" "translucentShader"  "float diffuseGain"  [0] "float refractionGain"  [1] "float reflectionGain"  [1] "color refractionColor"  [0.9 0.7 0.1] "float Roughness"  [1] "float glassAnisotropy"  [0] "int thinGlass" [0]
                 TransformBegin
                     Translate 0 -0.5 0
                     # Translate 0 0 2
                     Scale 1.23 1 1.23
                     Rotate -90 1 0 0
-                    Scale 0.89 0.89 0.6
+                    Scale 0.86 0.86 0.6
                     Hyperboloid -0.3 1.0 -1.0 0.15 0.85 1.0 360
                     # Disk 0.9 0.9 360
                 TransformEnd
@@ -141,7 +146,7 @@ TransformBegin
                     Rotate -270 1 0 0
                     Hyperboloid 0 0.47 -0.6 0.9 0.75 1.0 360
                     Scale 0.9 0.9 1 
-                    Hyperboloid 0 0.47 -0.6 0.9 0.75 1.0 360
+                    # Hyperboloid 0 0.47 -0.6 0.9 0.75 1.0 360
                 TransformEnd
 
                 # ========================cover====================
@@ -375,7 +380,7 @@ TransformBegin
             TransformBegin
                 TransformBegin
                     Translate 1 -0.73 -0.98
-                    Scale 15 15 15
+                    Scale 23 15 15
                     Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
                 TransformEnd
 
@@ -392,6 +397,28 @@ TransformBegin
                             Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
                         TransformEnd
 
+                        TransformBegin
+                            Translate 5 -1.31 6
+                            Rotate 90 0 0 1
+                            Scale 15 13 13
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 4 5 4
+                            Rotate 180 0 0 0
+                            # Rotate 90 0 0 1
+                            Scale 20 13 20
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 0 3 15
+                            # Rotate  0 0 0
+                            Rotate 90 1 0 0
+                            Scale 20 13 20
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
 
                         TransformBegin
                             Translate -6.3 -1.31 0.7

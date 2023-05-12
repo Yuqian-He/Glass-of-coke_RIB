@@ -8,7 +8,7 @@ AttributeBegin
     Attribute "visibility" "int camera" [0]
     Rotate 180 0 1 0 # do not change
     Light "PxrRectLight" "PxrRectLightShape1"
-            "float exposure" [6]
+            "float exposure" [3]
             "color lightColor" [1 1 1]
             "float coneAngle" [90]
             "int enableShadows" [1]
@@ -24,7 +24,7 @@ AttributeBegin
     Attribute "visibility" "int camera" [0]
     Rotate 180 0 1 0 # do not change
     Light "PxrRectLight" "PxrRectLightShape2"
-            "float exposure" [6]
+            "float exposure" [3]
             "color lightColor" [1 1 1]
             "float coneAngle" [90]
             "int enableShadows" [1]
@@ -40,7 +40,7 @@ AttributeBegin
     Attribute "visibility" "int camera" [0]
     Rotate 180 0 1 0 # do not change
     Light "PxrRectLight" "PxrRectLightShape3"
-            "float exposure" [5]
+            "float exposure" [2]
             "color lightColor" [1 1 1]
             "float coneAngle" [90]
             "int enableShadows" [1]

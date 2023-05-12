@@ -23,7 +23,9 @@ WorldBegin
 		"int diffuseDoubleSided" [1]
 
 	TransformBegin
-		Scale 4 4 4
+        Rotate -100 1 0 0
+        Rotate -50 0 0 1
+        Light "PxrDomeLight" "hdrLight" "float exposure" [0] "string lightColorMap" ["veranda_1k.tx"]
 	TransformEnd
 
 	AttributeBegin
