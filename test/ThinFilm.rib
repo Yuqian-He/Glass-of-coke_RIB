@@ -1,0 +1,28 @@
+Bxdf "LamaSurface" "LamaSurface1"
+		"int m		Pattern "PxrSeExpr" "PxrSeExpr1"
+		"color colorInput1" [0.0 0.0 0.0]
+		"color colorInput2" [0.0 0.0 0.0]
+		"color colorInput3" [0.0 0.0 0.0]
+		"color colorInput4" [0.0 0.0 0.0]
+		"float floatInput1" [0.0]
+		"float floatInput2" [0.0]
+		"float floatInput3" [0.0]
+		"float floatInput4" [0.0]
+		"string expression" [""]
+		# "PxrSeExpr1:resultRGB"    uses->|color|vector|normal|point| 
+		# "PxrSeExpr1:resultR"    uses->|float| 
+		# "PxrSeExpr1:resultG"    uses->|float| 
+		# "PxrSeExpr1:resultB"    uses->|float| 
+		# "PxrSeExpr1:resultF"    uses->|float| 
+aterialSides" [1]
+		"bxdf materialFront" []
+		"bxdf materialBack" []
+		"float presence" [1.0]
+		"float exteriorIOR" [1.0]
+		"int computePresence" [0]
+		"int computeOpacity" [0]
+		"int computeSubsurface" [0]
+		"int computeInterior" [0]
+		"color utilityColor" []
+		"float utilityFloat" []
+		"int utilityInteger" []

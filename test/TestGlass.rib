@@ -1,0 +1,463 @@
+Hider "raytrace" "int incremental" [1] "int minsamples" [0] "int maxsamples" [128] "float darkfalloff" [0.025]
+Integrator "PxrPathTracer" "PxrPathTracer" "int maxIndirectBounces" [10] "int allowCaustics" [0]
+PixelVariance 0.05
+# version 3.04
+# Display "HelloWorld.exr" "framebuffer" "rgba"
+
+Format 1920 1080 1
+Display "untitled" "it" "rgba"
+Projection "perspective" "fov" [30]
+# DepthOfField 1.5 0.9 17.5
+
+Translate 2.5 -1.4 15
+# Translate  2.8 -1.6 120
+# Rotate 0 1 0 0
+Rotate -15 1 0 0
+Rotate  -24 0 1 0
+Scale 1 1 -1
+DisplayFilter "PxrBackgroundDisplayFilter" "background" "color backgroundColor" [1 1 1]
+WorldBegin
+	Bxdf "PxrSurface" "default"
+		"color diffuseColor" [0.3 0.3 0.3]
+		"float diffuseGain" [1.0]
+		"int diffuseDoubleSided" [1]
+
+	TransformBegin
+        # Scale 0.5 0.5 0.5
+        # Translate 0 10 0 
+        Rotate -100 1 0 0
+        Rotate -50 0 0 1
+        Light "PxrDomeLight" "hdrLight" "float exposure" [3] "string lightColorMap" ["veranda_1k.tx"]
+		# Scale 4 4 4
+	TransformEnd
+
+	AttributeBegin
+		Rotate  0  0 1 0 # orbital
+		Rotate -50 1 0 0 # elevation
+		Translate 0 0 9  # distance
+		Scale 2 2 -1
+
+        ReadArchive "./archives/lights/3lights.rib"
+
+		Attribute "visibility" "int indirect" [0] "int transmission" [0]
+		Attribute "visibility" "int camera" [0]
+        
+		# Light "PxrRectLight" "PxrRectLightShape3"
+		# 		"float exposure" [7]
+		# 		"color lightColor" [1 1 1]
+		# 		"float coneAngle" [90]
+		# 		"int enableShadows" [1]
+		# 		"color shadowColor" [0 0 0]
+	AttributeEnd
+
+# AttributeBegin
+
+# -----------------------------------------------------------------------bottle----------------------------------------------
+TransformBegin
+    AttributeBegin
+        # Bxdf "PxrSurface" "translucentShader" "int diffuseDoubleSided" [2] "float diffuseGain"  [0.0] "float refractionGain"  [0.9] "float reflectionGain"  [1.0] "color refractionColor"  [1 1 1] "float glassRoughness"  [0.2] "int thinGlass" [0.5]
+        # TransformBegin
+
+
+        # ===============bottle body============
+        TransformBegin
+            AttributeBegin
+                Scale 1.2 1 1.2
+                Attribute "trace" "integer maxspeculardepth" [10]
+                # Bxdf "PxrGlass" "sg1" "float reflectionGain" 1 "color reflectionColor" [1 1 1] "color transmissionColor" [1 1 1]
+                Bxdf "PxrLayerSurface" "translucentShader"  "float diffuseGain"  [0.0] "float refractionGain"  [1] "float reflectionGain"  [1] "color refractionColor"  [1 1 1] "float glassAnisotropy"  [0] "int thinGlass" [0]
+                # Bxdf "PxrSurface" "translucentShader" "int diffuseDoubleSided" [2] "float diffuseGain" [0.1] "float refractionGain" [1] "float reflectionGain" [0.5] "color refractionColor" [1 1 1] "float glassRoughness" [0.3] "int thinGlass" [0.3]
+                
+                TransformBegin
+                    #bottle ring
+                    Scale 1.1 0.8 1.1
+                    Translate 0 -2.61 0
+                    TransformBegin
+                        Translate 0 0.943 0
+                        Rotate -270 1 0 0
+                        Torus 1.141 0.1 0 90 360
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 0 0.98 0
+                        Rotate 90 1 0 0
+                        Cylinder 1.24 -0.1 0.05 -360
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 0 1.08 0
+                        Rotate -90 1 0 0
+                        Torus 1.141 0.1 0 90 360
+                    TransformEnd
+                TransformEnd
+
+                TransformBegin
+                    Translate 0 -0.153 0
+                    # Translate 0 0 2
+                    Scale 1.23 1 1.23
+                    Rotate -90 1 0 0
+                    Hyperboloid -0.3 1.0 -1.0 0.4 0.85 1.0 360
+                    Scale 0.9 0.9 1
+                    # Hyperboloid -0.3 1.0 -1.0 0.4 0.85 1.0 360
+                TransformEnd
+
+                AttributeBegin
+                Bxdf "PxrLayerSurface" "translucentShader"  "float diffuseGain"  [0] "float refractionGain"  [1] "float reflectionGain"  [1] "color refractionColor"  [0.9 0.7 0.1] "float Roughness"  [1] "float glassAnisotropy"  [0] "int thinGlass" [0]
+                TransformBegin
+                    Translate 0 -0.5 0
+                    # Translate 0 0 2
+                    Scale 1.23 1 1.23
+                    Rotate -90 1 0 0
+                    Scale 0.86 0.86 0.6
+                    Hyperboloid -0.3 1.0 -1.0 0.15 0.85 1.0 360
+                    # Disk 0.9 0.9 360
+                TransformEnd
+
+                TransformBegin
+                    Translate 0 -0.50 0
+                    # Translate 0 0 2
+                    Scale 1.23 1 1.23
+                    Rotate -90 1 0 0
+                    Scale 0.89 0.89 0.7
+                    Disk 0.85 0.85 360
+                TransformEnd
+                AttributeEnd
+
+                TransformBegin
+                    Translate 0 0.943 0
+                    Rotate -270 1 0 0
+                    Torus 1.141 0.1 0 90 360
+                TransformEnd
+
+                TransformBegin
+                    Translate 0 0.98 0
+                    Rotate 90 1 0 0
+                    Cylinder 1.24 -0.1 0.05 -360
+                TransformEnd
+
+                TransformBegin
+                    Translate 0 1.08 0
+                    Rotate -90 1 0 0
+                    Torus 1.141 0.1 0 90 360
+                TransformEnd
+
+                TransformBegin
+                    Translate 0 2.17 0
+                    Rotate -270 1 0 0
+                    Hyperboloid 0 0.47 -0.6 0.9 0.75 1.0 360
+                    Scale 0.9 0.9 1 
+                    # Hyperboloid 0 0.47 -0.6 0.9 0.75 1.0 360
+                TransformEnd
+
+                # ========================cover====================
+                TransformBegin
+                    Translate 0 0.233 0
+                    Scale 0.903 0.8 0.903
+                    TransformBegin
+                        Translate 0 3.67 0
+                        Rotate 90 1 0 0
+                        Cylinder 0.52 -0.5 0.5 -360
+                    TransformEnd
+
+                    TransformBegin
+                        #bottle ring
+                        Scale 0.471 0.471 0.471
+                        Translate 0 7.9 0
+                        TransformBegin
+                            Translate 0 0.943 0
+                            Rotate -270 1 0 0
+                            Torus 1.141 0.1 0 90 360
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 0 0.98 0
+                            Rotate 90 1 0 0
+                            Cylinder 1.24 -0.1 0.05 -360
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 0 1.08 0
+                            Rotate -90 1 0 0
+                            Torus 1.141 0.1 0 90 360
+                        TransformEnd
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 0 4.377 0
+                        Rotate 90 1 0 0
+                        Cylinder 0.54 -0.1 0.1 -360
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 0 4.627 0
+                        Rotate 90 1 0 0
+                        Rotate 198 0 0 1
+                        Cylinder 0.54 -0.1 0.15 360
+                    TransformEnd
+
+                    TransformBegin
+                        Translate -0.4 4.78 0
+                        Rotate 90 1 0 0
+                        Rotate 90 0 0 1
+                        Scale 0.5 1 1
+                        Cone 0.35 0.53 180 
+                    TransformEnd
+
+                    TransformBegin
+                        #bottle ring
+                        Scale 0.436 0.3 0.436
+                        Translate 0 14.8 0
+                        TransformBegin
+                            Translate 0 0.943 0
+                            Rotate -270 1 0 0
+                            Torus 1.141 0.1 0 90 360
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 0 0.98 0
+                            Rotate 90 1 0 0
+                            Cylinder 1.24 -0.1 0.05 -360
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 0 1.08 0
+                            Rotate -90 1 0 0
+                            Torus 1.141 0.1 0 90 360
+                        TransformEnd
+                    TransformEnd
+                    
+                TransformEnd
+
+            AttributeEnd
+
+        # =========================teapot handle=================
+
+        TransformBegin
+            Translate -0.15 0.1 0
+            Rotate -4 0 0 1
+            Scale 0.85 0.85 0.85
+            AttributeBegin
+                Bxdf "PxrLayerSurface" "glass"  "float diffuseGain"  [0.0] "float refractionGain"  [1] "float reflectionGain"  [0.1] "color refractionColor"  [1 1 1] "float glassRoughness"  [0.2] "float glassAnisotropy"  [0.6] "int thinGlass" [0]
+                TransformBegin
+                    TransformBegin
+                        Translate 0.3 3 0
+                        Rotate -50 0 0 1
+                        # Rotate 0 0 1 0
+                        Torus 1.6 0.13 360 0 50
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 1.2 3 0
+                        Rotate 0 0 0 1
+                        # Rotate 0 0 1 0
+                        Torus 0.7 0.13 360 0 40
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 1.2 3 0
+                        Rotate 20 0 0 1
+                        # Rotate 0 0 1 0
+                        Torus 0.7 0.13 360 0 40
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 1.2 3 0
+                        Rotate 50 0 0 1
+                        # Rotate 0 0 1 0
+                        Torus 0.7 0.13 360 0 40
+                    TransformEnd
+
+                    TransformBegin
+                        Translate 1.20 1.6 0
+                        Rotate 90 0 0 1
+                        # Rotate 0 0 1 0
+                        Torus 2.1 0.13 360 0 20
+                    TransformEnd
+                TransformEnd
+            AttributeEnd
+
+
+    AttributeEnd
+
+
+    # ------------------------------------------------------------------------cork-------------------------------------------------------
+    TransformBegin
+        AttributeBegin
+        Pattern "PxrTexture" "corkTexture" "string filename" "./archives/materials/corkBaseColor.tx" "int linearize" [1] #"reference struct manifold" ['stretchyBit']#"PxrManifold2D""float scaleS" [2] "int linearize" [1]
+        Pattern "PxrNormalMap" "corkNormal" "string filename" "./archives/materials/corkNormal.tx" "int invertT" [0]
+        Pattern "PxrBump" "corkDisplacement" "string filename" "./archives/materials/corkDisplacement.tx"
+        
+        Attribute "trace" "int displacements" [1]
+        Attribute "displacementbound" "float sphere" [0.2]
+        
+        Pattern "PxrDispTransform" "DispTransform"
+                "reference vector dispVector" ['corkDisplacement:resultN']
+                "uniform float dispDepth" [1.0]
+                "uniform float dispHeight" [1.0]
+                "uniform int dispType" [2]
+                "uniform int vectorSpace" [3]
+                "uniform int dispRemapMode" [1]
+                "uniform float dispCenter" [0]
+
+        Displace "PxrDisplace" "myDisp" 
+                "reference vector dispVector" ["corkDisplacement:resultN"]
+                "uniform float dispAmount" [0.001]
+                "int enabled" [1]
+                
+        Bxdf "PxrDisney" "cork" 
+            "reference color baseColor"  ['corkTexture:resultRGB'] 
+            "reference normal bumpNormal" ['corkNormal:resultN']
+            "float metallic" [0]
+            "float roughness" [1]
+            "float specular" [0]
+        TransformBegin
+            Translate 0 4.2 0
+            Rotate 90 1 0 0
+            Cylinder 0.51 -0.1 0.5 360
+        TransformEnd
+
+        TransformBegin
+            Translate 0 4.81 0
+            Rotate 90 1 0 0
+            Disk 0.51 0.51 360
+        TransformEnd
+        AttributeEnd
+    TransformEnd
+
+
+
+    # ------------------------------------------------------------------------------water---------------------------------------------
+    # TransformBegin
+    #     Translate 0 -0.5 0
+    #     Scale 0.5 2 0.5
+    #     Rotate 30 0 1 0
+    #     AttributeBegin
+    #         Bxdf "PxrSurface" "translucentShader" "int diffuseDoubleSided" [0] "float diffuseGain"  [0.2] "float refractionGain"  [2]  "color refractionColor"  [0.9 0.7 0.1] "float glassRoughness"  [0] "int thinGlass" [0]
+    #         # Bxdf "PxrSurface" "translucentShader" "int diffuseDoubleSided" [2] "float diffuseGain"  [1] "color refractionColor"  [0.9 0.7 0.1]  "float glassRoughness"  [0] "int thinGlass" [0]
+    #         TransformBegin
+    #             # Translate 0 -0.153 0
+    #             # Scale 1 1 1
+    #             Rotate -90 1 0 0
+    #             Hyperboloid -0.3 1.0 -1.0 0.4 0.85 1.0 360
+    #         TransformEnd
+    #     AttributeEnd
+    # TransformEnd
+
+
+    # --------------------------------------------------------------------table----------------------------------------------
+    AttributeBegin
+        Pattern "PxrTexture" "tableTexture" "string filename" "./archives/materials/tableBaseColor.tx" "int linearize" [1] #"reference struct manifold" ['stretchyBit']#"PxrManifold2D""float scaleS" [2] "int linearize" [1]
+        Pattern "PxrNormalMap" "normalMap" "string filename" "./archives/materials/tableNormal.tx" "int invertT" [0]
+        Pattern "PxrBump" "tableDisplacement" "string filename" "./archives/materials/tableDisplacement.tx"
+        
+        Attribute "trace" "int displacements" [1]
+        Attribute "displacementbound" "float sphere" [0.2]
+        
+        Pattern "PxrDispTransform" "DispTransform"
+                "reference vector dispVector" ['tableDisplacement:resultN']
+                "uniform float dispDepth" [0.5]
+                "uniform float dispHeight" [0.5]
+                "uniform int dispType" [2]
+                "uniform int vectorSpace" [3]
+                "uniform int dispRemapMode" [1]
+                "uniform float dispCenter" [0]
+
+        Displace "PxrDisplace" "myDisp" 
+                "reference vector dispVector" ["tableDisplacement:resultN"]
+                "uniform float dispAmount" [0.001]
+                "int enabled" [1]
+        
+        Bxdf "PxrDisney" "table" 
+            "reference color baseColor"  ['tableTexture:resultRGB'] 
+            "reference normal bumpNormal" ['normalMap:resultN'] 
+            "float metallic" [0]
+            "float roughness" [0.7]
+            "float specular" [0]   
+        TransformBegin
+            Scale 1.8 1.8 1.8
+            Rotate 35 0 1 0
+            Translate -1 -0.0 5
+            TransformBegin
+                TransformBegin
+                    Translate 1 -0.73 -0.98
+                    Scale 23 15 15
+                    Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                TransformEnd
+
+                TransformBegin
+                    Translate 6 0 -2
+                    Rotate -90 0 1 0
+                    TransformBegin
+
+                        TransformBegin
+                            Translate 0 -1.31 0
+                            Rotate 90 1 0 0
+                            # Rotate 90 0 0 1
+                            Scale 13 13 13
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 5 -1.31 6
+                            Rotate 90 0 0 1
+                            Scale 15 13 13
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 4 5 4
+                            Rotate 180 0 0 0
+                            # Rotate 90 0 0 1
+                            Scale 20 13 20
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate 0 3 15
+                            # Rotate  0 0 0
+                            Rotate 90 1 0 0
+                            Scale 20 13 20
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate -6.3 -1.31 0.7
+                            Rotate 90 1 0 0
+                            # Rotate 90 0 0 1
+                            Scale 0.3 13 13
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+                        TransformBegin
+                            Translate -6.16 -1.31 0.3
+                            Rotate 90 1 0 0
+                            Rotate 90 0 0 1
+                            Scale 0.8 13 13
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+
+
+                        TransformBegin
+                            Translate -6.45 -1.31 0.3
+                            Rotate 90 1 0 0
+                            Rotate 90 0 0 1
+                            Scale 0.8 13 13
+                            Polygon "P" [-0.5 0 -0.5  -0.5 0 0.5  0.5 0 0.5  0.5 0 -0.5]
+                        TransformEnd
+                    TransformEnd
+
+                TransformEnd
+            TransformEnd
+        TransformEnd
+    AttributeEnd
+TransformEnd
+  
+# AttributeEnd
+
+# 	AttributeBegin #this is the floor
+# 		# Attribute "identifier" "string name" ["plane1"]
+# 		#Scale 20 1 10
+# 		# ReadArchive "../archives/materials/ThinFilm.rib"
+# 				# "st" [0 0  0 1  1 1  1 0]
+# 	AttributeEnd
+WorldEnd
