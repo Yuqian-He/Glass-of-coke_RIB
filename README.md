@@ -11,9 +11,9 @@ The objective of this project is to render a glass containing Coca-Cola using ri
 RenderManProServer 24.0 or above
 
 ## Build and Repository Structure
-- Please download [material](https://drive.google.com/file/d/1fgTx3xBFNH0O2BoqCF1uSii3F8A92AlT/view?usp=share_link) as .tx file is too large that I cannot upload on github. Then extract under "material" folder.
+- Please download [material](https://drive.google.com/file/d/1fgTx3xBFNH0O2BoqCF1uSii3F8A92AlT/view?usp=share_link) because .tx file is too large that I cannot upload on github. Then extract under "material" folder.
 
-- Please download [HDRI](https://drive.google.com/file/d/1ZskYMDCajDv4VdCkyT9qe0emX0FD29Mv/view?usp=share_link)as .tx file is too large that I cannot upload on github. Then extract under ROOT dictionary.
+- Please download [HDRI](https://drive.google.com/file/d/1ZskYMDCajDv4VdCkyT9qe0emX0FD29Mv/view?usp=share_link) because .tx file is too large that I cannot upload on github. Then extract under ROOT dictionary.
 
 - Main code is  ./ribs/Glass.rib. To run this code:
 ``` c
